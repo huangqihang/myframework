@@ -24,7 +24,7 @@
 	
 	  	<!-- Registering BeanNameViewResolver and InternalViewResolver -->
 	  	<mvc:bean-name />
-	  	<mvc:jsp prefix="/WEB-INF/views/jsp/" suffix=".jsp"/>
+	  	<mvc:jsp prefix="/WEB-INF/views/jsp/" suffix=""/>
 	</mvc:view-resolvers>
 
 </beans>

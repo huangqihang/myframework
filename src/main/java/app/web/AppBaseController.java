@@ -12,10 +12,10 @@ public abstract class AppBaseController extends AppBase {
 	 * 
 	 * @return 手动生成DataTable插件需要的Json字符串
 	 */
-	public <T> String toDataTableJson(List<T> datas) {
+	public <T> String toDataTableJsonTree(List<T> datas) {
 		DataTableObject<T> dataTableObject = new DataTableObject<T>();
 		dataTableObject.setAaData(datas);
-		String json = toJson(dataTableObject);
+		String json = toJsonTree(dataTableObject);
 		return json;
 	}
 	
