@@ -1,4 +1,4 @@
-package app.model;
+package demo.datatable.model;
 
 public class JQueryDataTableParamModel {
 

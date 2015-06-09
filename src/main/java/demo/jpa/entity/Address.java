@@ -1,4 +1,4 @@
-package app.demo.jpa.entity;
+package demo.jpa.entity;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;

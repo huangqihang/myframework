@@ -1,4 +1,4 @@
-package app.demo.jpa;
+package demo.jpa;
 
 import javax.persistence.EntityManager;
 
@@ -6,8 +6,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import app.demo.jpa.entity.Address;
-import app.demo.jpa.persistenceutil.PersistenceManager;
+import demo.jpa.entity.Address;
+import demo.jpa.persistenceutil.PersistenceManager;
 
 public class Main {
 	

@@ -1,4 +1,4 @@
-package app.demo.jpa.entity;
+package demo.jpa.entity;
 
 import java.math.BigDecimal;
 import java.util.Collection;

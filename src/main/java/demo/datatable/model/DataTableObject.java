@@ -1,4 +1,4 @@
-package app.model;
+package demo.datatable.model;
 
 import java.util.List;
 

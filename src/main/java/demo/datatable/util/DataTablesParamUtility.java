@@ -1,8 +1,8 @@
-package app.demo.datatable.util;
+package demo.datatable.util;
 
 import javax.servlet.http.HttpServletRequest;
 
-import app.model.JQueryDataTableParamModel;
+import demo.datatable.model.JQueryDataTableParamModel;
 
 public class DataTablesParamUtility {
 	

@@ -1,4 +1,4 @@
-package app.demo.datatable.repository;
+package demo.datatable.repository;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;

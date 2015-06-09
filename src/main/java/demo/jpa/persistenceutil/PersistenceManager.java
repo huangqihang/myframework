@@ -1,4 +1,4 @@
-package app.demo.jpa.persistenceutil;
+package demo.jpa.persistenceutil;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;

@@ -1,4 +1,4 @@
-package app.demo.datatable.web;
+package demo.datatable.web;
 
 import java.util.Collections;
 import java.util.Comparator;
@@ -17,12 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import app.common.MIMEType;
-import app.demo.datatable.repository.DataRepository;
-import app.demo.datatable.service.DataTableService;
-import app.demo.datatable.util.DataTablesParamUtility;
 import app.model.Company;
-import app.model.DataTableObject;
-import app.model.JQueryDataTableParamModel;
 import app.model.Person;
 import app.web.AppBaseController;
 
@@ -31,6 +26,12 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonIOException;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonPrimitive;
+
+import demo.datatable.model.DataTableObject;
+import demo.datatable.model.JQueryDataTableParamModel;
+import demo.datatable.repository.DataRepository;
+import demo.datatable.service.DataTableService;
+import demo.datatable.util.DataTablesParamUtility;
 
 @Controller
 @RequestMapping("/data")

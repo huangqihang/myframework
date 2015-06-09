@@ -3,7 +3,7 @@ package app.web;
 import java.util.List;
 
 import app.common.AppBase;
-import app.model.DataTableObject;
+import demo.datatable.model.DataTableObject;
 
 
 public abstract class AppBaseController extends AppBase {

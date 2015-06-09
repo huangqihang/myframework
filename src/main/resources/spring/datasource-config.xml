@@ -19,5 +19,5 @@
 	<context:component-scan
 	            base-package="app.repository"/>
 	<context:component-scan
-	            base-package="app.demo.*.repository"/>
+	            base-package="demo.*.repository"/>
 </beans>

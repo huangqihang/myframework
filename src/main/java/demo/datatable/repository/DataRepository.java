@@ -1,4 +1,4 @@
-package app.demo.datatable.repository;
+package demo.datatable.repository;
 
 import java.util.LinkedList;
 import java.util.List;
