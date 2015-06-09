@@ -1,4 +1,4 @@
-package app.web.datatable;
+package app.demo.datatable.web;
 
 import java.util.Collections;
 import java.util.Comparator;
@@ -17,13 +17,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import app.common.MIMEType;
+import app.demo.datatable.repository.DataRepository;
+import app.demo.datatable.service.DataTableService;
+import app.demo.datatable.util.DataTablesParamUtility;
 import app.model.Company;
 import app.model.DataTableObject;
 import app.model.JQueryDataTableParamModel;
 import app.model.Person;
-import app.repository.DataRepository;
-import app.service.DataTableService;
-import app.util.DataTablesParamUtility;
 import app.web.AppBaseController;
 
 import com.google.gson.Gson;

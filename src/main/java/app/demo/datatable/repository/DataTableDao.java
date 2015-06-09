@@ -1,4 +1,4 @@
-package app.repository;
+package app.demo.datatable.repository;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -16,8 +16,9 @@ import app.model.Person;
 public class DataTableDao {
 	
 	public List<Person> getPersonList() {
-		Person bean1 = new Person(1, "张三1", 21, new Date(), new Address("四川", "洪雅"));
-		Person bean2 = new Person(2, "张三2", 22, new Date(), new Address("四川", "洪雅"));
+		Address addr = new Address("中国", "洪雅");
+		Person bean1 = new Person(1, "张三1", 21, new Date(), addr);
+		Person bean2 = new Person(2, "张三2", 22, new Date(), addr);
 		Person bean3 = new Person(3, "张三3", 23, new Date());
 		
 		List<Person> list = new ArrayList<Person>();

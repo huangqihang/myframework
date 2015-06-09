@@ -1,4 +1,4 @@
-package app.util;
+package app.demo.datatable.util;
 
 import javax.servlet.http.HttpServletRequest;
 

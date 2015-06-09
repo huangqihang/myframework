@@ -18,6 +18,8 @@
 
     <context:component-scan
             base-package="app.web"/>
+    <context:component-scan
+            base-package="app.demo.*.web"/>
 
     <mvc:annotation-driven />
 
