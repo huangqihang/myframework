@@ -69,6 +69,8 @@
 
 		<cobertura.version>2.7</cobertura.version>
 
+
+		<dwr.version>3.0.0-RELEASE</dwr.version>
 	</properties>
 
 	<dependencies>
@@ -337,6 +339,14 @@
 			<groupId>net.sourceforge.pjl-comp-filter</groupId>
 			<artifactId>pjl-comp-filter</artifactId>
 			<version>1.7</version>
+		</dependency>
+
+
+		<!-- DWR -->
+		<dependency>
+			<groupId>org.directwebremoting</groupId>
+			<artifactId>dwr</artifactId>
+			<version>3.0.0-RELEASE</version>
 		</dependency>
 	</dependencies>
 
