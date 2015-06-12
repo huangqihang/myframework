@@ -1,4 +1,4 @@
-package app.model;
+package app.entity;
 
 import javax.xml.bind.annotation.XmlType;
 

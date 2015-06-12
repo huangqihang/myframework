@@ -1,4 +1,4 @@
-package app.model;
+package app.entity;
 
 public class Profile {
     private String job;

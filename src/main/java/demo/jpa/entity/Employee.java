@@ -37,12 +37,12 @@ public class Employee {
   @Temporal(TemporalType.DATE)
   private Date startDate;
   
-  @Column(name = "end_date")
+  @Column(name = "end_date") // 普通字段的字段名称用Column来指定
   @Temporal(TemporalType.DATE)
   private Date endDate;
   
   @ManyToOne
-  @JoinColumn(name = "manager_id")
+  @JoinColumn(name = "manager_id") //关联字段的字段名称用JoinColum来指定
   private Employee manager;
   
   @ManyToOne

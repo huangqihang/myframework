@@ -9,8 +9,8 @@ import java.util.Map;
 
 import org.springframework.stereotype.Repository;
 
-import app.model.Address;
-import app.model.Person;
+import app.entity.Address;
+import app.entity.Person;
 
 @Repository
 public class DataTableDao {

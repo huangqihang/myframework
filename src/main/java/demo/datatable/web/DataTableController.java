@@ -17,8 +17,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import app.common.MIMEType;
-import app.model.Company;
-import app.model.Person;
+import app.entity.Company;
+import app.entity.Person;
 import app.web.AppBaseController;
 
 import com.google.gson.Gson;

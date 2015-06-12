@@ -35,8 +35,11 @@ public class Project {
   private Employee leader;
   
   @ManyToMany
+  // JoinTable定义中间表； 
+  // joinColumns定义中间表中"我方"的字段名称；
+  // inverseJoinColumns定义中间表中"另一方"的字段名称
   @JoinTable(name = "project_employee", joinColumns = @JoinColumn(name = "project_id"), 
-      inverseJoinColumns = @JoinColumn(name = "employee_id"))
+      inverseJoinColumns = @JoinColumn(name = "employee_id")) 
   private Collection<Employee> employees;
 
   public Long getId() {

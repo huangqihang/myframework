@@ -3,7 +3,7 @@ package demo.datatable.repository;
 import java.util.LinkedList;
 import java.util.List;
 
-import app.model.Company;
+import app.entity.Company;
 
 public class DataRepository {
 	
