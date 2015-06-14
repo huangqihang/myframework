@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Util Demo</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="pragma" content="no-cache">
+<meta http-equiv="cache-control" content="no-cache">
+<meta http-equiv="expires" content="0">
+
+<style>
+.small { font-size:80%; }
+.testblock { margin:10px; background-color:#fff8dd; padding:10px }
+</style>
+
+<script type='text/javascript' src='/dwr/util.js'></script>
+</head>
+<body onload="">
+
+	<hr />
+	
+	<div class="testblock">
+		<table>
+			<tbody>
+				<tr>
+					<td>Text area <span class="small">(id="textarea")</span>:</td>
+					<td><textarea id="textarea">AAAAAA BBBBB CCCC </textarea></td>
+					
+					<td>Selection list <span class="small">(id="select")</span>:
+					</td>
+					<td><select id="select">
+							<option selected="selected" value="value-one">text one</option>
+							<option value="value-two">text two</option>
+							<option value="value-three">text three</option>
+					</select></td>
+				</tr>
+				<tr>
+					<td>Text input <span class="small">(id="text")</span>:</td>
+					<td><input id="text" value="你好"></td>
+					
+					<td>Password input <span class="small">(id="password")</span>: </td>
+					<td><input id="password" value="password" type="password"></td>
+				</tr>
+				<tr>
+					<td>Form button <span class="small">(id="formbutton")</span>: </td>
+					<td><input id="formbutton" value="button" type="button"></td>
+					
+					<td>Fancy button <span class="small">(id="button")</span>: </td>
+					<td></td>
+				</tr>
+			</tbody>
+		</table>
+		
+		<hr/>
+
+		<button id="button" onclick="getValues()">getValues</button>
+		<button id="button" onclick="getValuesUseArray()">getValuesUseArray</button>
+		<button id="button" onclick="getValuesUseObject()">getValuesUseObject</button>
+		
+		<br/>
+		
+		<button id="button" onclick="setValuesUseObject()">setValuesUseObject</button>
+		<button id="button" onclick="setValuesUseClone()">setValuesUseArray</button>
+		
+		<br/>
+		<button id="button" onclick="pretty_print()">pretty_print</button>
+
+
+		<hr/>
+		<!-- 被clone的样本，用来循环生成被填充的列表-->
+		<div id="person" style="display:none">
+		  <div>Name: <span id="person.firstName"></span> <span id="person.lastName"></span></div>
+		  <div>Address: <span id="person.address"></span></div>
+		</div> 
+		
+	</div>
+	<script type="text/javascript">
+		function log(msg) {
+			console.clear();
+			for(var i=0; i<arguments.length; i++) {
+				console.log("arg"+i+":\t"+arguments[i])
+			}
+		}
+
+		function getValues() {
+			var textarea = dwr.util.getValue("textarea");
+			var select = dwr.util.getValue("select");
+			var text = dwr.util.getValue("text");
+			var password = dwr.util.getValue("password");
+			var formbutton = dwr.util.getValue("formbutton");
+			
+			log(textarea, select, text, password, formbutton);
+		}
+		
+		function getValuesUseArray() {
+			// 1次获取所有id对应的值
+			var obj = {};
+			var ids = ["textarea", "select", "text", "password", "formbutton"];
+			ids.forEach(function(ele, index) {
+				obj[ele] = dwr.util.getValue(ele);
+			});
+			
+			var json = JSON.stringify(obj);
+			log(json);
+		}
+		
+		// getValues(object, options) ---1次性获取所有给定id的元素的值
+		function getValuesUseObject() {
+		  // key-id, value-初始临时性设置为null或者某个默认值，后续将用id对应的值覆盖
+		  var object = {
+			  div:'default-value', // 如果没有对应元素，则使用默认值
+			  textarea:null,
+			  select:null,
+			  text:null,
+			  password:null,
+			  formbutton:null,
+			  button:null
+			}
+		  dwr.util.getValues(object);
+		  
+		  // object -> json
+		  var json = JSON.stringify(object);
+		  log(json);
+		  
+		  // object -> toString
+		  pretty_print(object);
+		}
+		
+		
+		///////////////////////////////////////////////////////////////////////////////
+		
+		// dwr.util.setValues(object/array, options)
+		
+		function setValuesUseObject() {
+		  // key-id, value-初始临时性设置为null或者某个默认值，后续将用id对应的值覆盖
+		  var object = {
+				  textarea: "Go ahead, try it.  Modify me!",
+				  select: "value-two"
+				}
+		  dwr.util.setValues(object);
+		  
+		}
+		
+		var nodesCloned = false;
+		function setValuesUseClone() {
+			var peopleArr = [{
+		         firstName : 'Mary', 
+		         lastName : 'Hutchkins', 
+		         address : '5434 Maplewood Drive' 
+		         }, {
+		         firstName : 'John', 
+		         lastName : 'Doe', 
+		         address : '2767 Green Acres Street' 
+		         }, {
+		         firstName : 'Mike', 
+		         lastName : 'Johnson', 
+		         address : '6 Wrong Way Avenue' 
+		         }];
+			// debugger;
+			if(!nodesCloned) {
+				// clone id='person' 的div, 用peopleArr中的元素替换
+				dwr.util.cloneNodeForValues('person', peopleArr, {updateCloneStyle:{display:""}});
+				nodesCloned = true;
+			}
+			
+			// 格式：idPrefix[index].objectPropertyName.
+			dwr.util.setValues(peopleArr, { idPrefix : 'person' });
+		}
+		
+		
+		
+		// a nicer version of toString() than the default.
+		function pretty_print(object, level) {
+			var lv = level | 3;
+			
+			if(typeof obj == "undefined") {
+				 obj = [{key:"key",value:"value" }];
+			}
+			
+			/* var options = {
+					escapeHtml: true,
+					baseIndent: "",
+					childIndent: "",
+					lineTerminator: "",
+					oneLineMaxItems: -1 // 单行输出
+			} */
+			
+			var desc = dwr.util.toDescriptiveString(obj, lv);
+			log(desc);
+		}
+		
+
+	</script>
+</body>
+</html>

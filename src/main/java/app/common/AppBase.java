@@ -3,6 +3,9 @@ package app.common;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import app.entity.Person;
+import app.entity.User;
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -27,6 +30,19 @@ public abstract class AppBase {
 	public String toJsonTree(Object obj) {
 		Gson gson = new GsonBuilder().setPrettyPrinting().create();
 		return  gson.toJson(obj);
+	}
+	
+	
+	@SuppressWarnings("unchecked")
+	public <T> T newInstance(Class<T> clazz) {
+		T t = null;
+		try {
+			String className = clazz.getName();
+			t = (T) Class.forName(className).newInstance();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return t;
 	}
 	
 }

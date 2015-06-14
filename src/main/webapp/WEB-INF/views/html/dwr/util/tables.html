@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Util Demo</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="pragma" content="no-cache">
+<meta http-equiv="cache-control" content="no-cache">
+<meta http-equiv="expires" content="0">
+<style type="text/css">
+table {
+	border-collapse: collapse;
+	border: none;
+	width: 200px;
+}
+
+td {
+	border: solid #000 1px;
+}
+</style>
+<script type='text/javascript' src='/dwr/util.js'>
+	
+</script>
+</head>
+<body>
+
+	<hr />
+	<div>
+		<table>
+			<thead>
+				<tr>
+					<th>Count</th>
+					<th>Unaltered</th>
+					<th>Altered</th>
+					<th>Button</th>
+				</tr>
+			</thead>
+
+			<tbody id="demo1"></tbody>
+			<tbody id="demo2"></tbody>
+
+			<tfoot></tfoot>
+		</table>
+		
+		<hr/>
+		<br/>
+		<input type="button" value="clear_1" onclick="dwr.util.removeAllRows('demo1');"/>
+		<input type="button" value="clear_2" onclick="dwr.util.removeAllRows('demo2');"/>
+	</div>
+
+
+
+	<script type="text/javascript">
+		window.onload = function() {
+			doAddRows1();
+			doAddRows2();
+		}
+		
+		// dwr.util.addRows(id, array, cellfuncs, [options]);
+		
+		// datas to fill table
+		var datas = [ 'Africa', 'America', 'Asia', 'Australasia', 'Europe' ];
+		
+		// 如何填充cell 
+		var cellFuncs = [
+				function(data) { // cell_1
+					return count++;
+				},
+				function(data) { // cell_2
+					return data;
+				},
+				function(data) { // cell_3
+					return data.toUpperCase();
+				},
+				function(data) { // cell_4
+					return "<input type='button' value='Test' onclick='alert(\"Hi\");'/>";
+				}
+
+		];
+		
+		var count = 1;
+		
+		function doAddRows1() {
+			dwr.util.addRows("demo1", datas, cellFuncs, { escapeHtml : false });
+		}
+		
+		// An object containing various options: rowCreator, cellCreator, escapeHtml
+		
+		var options = {
+			rowCreator : function(options) {
+				var row = document.createElement("tr");
+				var index = options.rowIndex * 50;
+				row.style.color = "rgb(" + index + ",0,0)";
+				return row;
+			},
+			cellCreator : function(options) {
+				var td = document.createElement("td");
+				var index = 255 - (options.rowIndex * 50);
+				td.style.backgroundColor = "rgb(" + index + ",255,255)";
+				td.style.fontWeight = "bold";
+				return td;
+			},
+			escapeHtml : false
+		};
+
+		function doAddRows2() {
+			dwr.util.addRows("demo2", datas, cellFuncs, options);
+		}
+		
+	</script>
+</body>
+</html>

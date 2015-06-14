@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body id="body">
+	<input type="text" value="for(var i=1;i<3;i++) alert(i)" id="code" />
+	<button onclick="appendMessage()">appendMessage</button>
+
+	<hr />
+	
+	<script type="text/javascript">
+		// 注意区分： 
+		// escapeHTML 对HTML中的标签进行转义 ，如 < 被转换为&lt;
+		// javascript 中的escase， 则是对所有非ascii字符按unicode进行编码
+		function appendMessage() {
+			var message = document.getElementById("code").value;
+			//message = escape(message); // 所有字符转换为unicode码
+			
+			var pElement = document.createElement("script");
+			var messageNode = document.createTextNode(message);
+			pElement.appendChild(messageNode);
+			document.body.appendChild(pElement);
+		}
+	</script>
+
+
+
+</body>
+</html>

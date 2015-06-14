@@ -5,11 +5,45 @@
 <dwr>
 
   <allow>
+  
+  	<!-- demo of chat -->
     <create creator="new" javascript="JavaChat">
-      <param name="class" value="demo.dwr.JavaChat"/>
+      <param name="class" value="demo.dwr.chat.JavaChat"/>
     </create>
-
-	<convert match="demo.dwr.Message" converter="bean"></convert>
+	<convert match="demo.dwr.chat.Message" converter="bean"></convert>
+	
+	<!-- demo of remote -->
+	<create creator="new" javascript="Remote">
+      <param name="class" value="demo.dwr.async.Remote"/>
+    </create>
+	<convert match="app.entity.Person" converter="bean"></convert>
+	<convert match="app.entity.Address" converter="bean"></convert>
+	
+	
+	<!-- file upload and download -->
+    <create creator="new">
+      <param name="class" value="demo.dwr.simple.UploadDownload"/>
+    </create>
+	
+	<!-- simple text -->
+    <create creator="new">
+      <param name="class" value="demo.dwr.simple.Demo"/>
+    </create>
+    
+    
+    <!-- intro - for the test on index.html -->
+    <create creator="new">
+      <param name="class" value="demo.dwr.simple.Intro"/>
+    </create>
+	
+	
+	 <!-- people -->
+    <create creator="new" scope="application">
+      <param name="class" value="demo.dwr.people.People"/>
+    </create>
+    <convert match="demo.dwr.people.Person" converter="bean"/>
+    
+    
   </allow>
   
 </dwr>

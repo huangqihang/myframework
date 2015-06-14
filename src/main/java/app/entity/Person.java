@@ -88,6 +88,9 @@ public class Person {
 
 	@Override
 	public String toString() {
+		if(this.birth == null) {
+			return super.toString();
+		}
 		return "Person [id=" + id + ", name=" + name + ", age=" + age
 				+ ", birth=" + new SimpleDateFormat("yyyy-MM-dd").format(birth) + ", address=" + address + "]";
 	}

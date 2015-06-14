@@ -1,4 +1,4 @@
-package demo.dwr;
+package demo.dwr.chat;
 
 import org.directwebremoting.Security;
 

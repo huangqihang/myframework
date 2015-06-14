@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Util Demo</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="pragma" content="no-cache">
+<meta http-equiv="cache-control" content="no-cache">
+<meta http-equiv="expires" content="0">
+
+<script type='text/javascript' src='/dwr/util.js'></script>
+</head>
+<body onload="">
+
+	<hr />
+	
+	<div>
+		<input type="text" value="123456789" id="sel-test"/>
+	</div>	
+	
+	<script type="text/javascript">
+		window.onload = function() {
+			// 解决DWRUtil is not defined问题
+			if (typeof window['DWRUtil'] == 'undefined') {
+			    window.DWRUtil = dwr.util;
+			}
+			
+			sel();
+		}
+		
+		function sel() {
+			// 选中文本中的某段范围
+			dwr.util.selectRange('sel-test', 2, 8);
+		}
+	</script>
+</body>
+</html>

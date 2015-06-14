@@ -68,7 +68,7 @@ public class DataTableController extends AppBaseController {
 		
 		model.addAttribute("companies", DataRepository.GetCompanies());
 		
-		return "datatable/index.jsp";
+		return jsplView("datatable", "index");
 	}
 	
 	
@@ -77,17 +77,17 @@ public class DataTableController extends AppBaseController {
 		
 		model.addAttribute("companies", DataRepository.GetCompanies());
 		
-		return "datatable/plugins.jsp";
+		return jsplView("datatable", "plugins");
 	}
 	
 	@RequestMapping(value="indexHtml", method=RequestMethod.GET)
 	public String indexHtml() {
-		return "datatable/index.html";
+		return htmlView("datatable", "index");
 	}
 	
 	@RequestMapping(value="objectsHtml", method=RequestMethod.GET)
 	public String objectsHtml() {
-		return "datatable/objects.html";
+		return htmlView("datatable", "objects");
 	}
 	
 	

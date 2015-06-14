@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Util Demo</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="pragma" content="no-cache">
+<meta http-equiv="cache-control" content="no-cache">
+<meta http-equiv="expires" content="0">  
+
+  <script type='text/javascript' src='/dwr/util.js'> </script>
+</head>
+<body>
+
+	<hr/>
+	<div>
+		<form>
+			<input type="text" id="name" value="张三"/> <br/>
+			<select id="simpleArray"></select> <br/>
+			<select id="simpleObjectArray"></select> <br/>
+			<select id="advancedObjectArray"></select> <br/>
+			<select id="map"></select> <br/>
+			
+			<input type="button" onclick="testRemoveOptions('banks')" value="clear"/> <br/>
+			
+		</form>
+		
+		<ul id="ul_list"></ul>
+		<ol id="ol_list"></ol>
+			
+	</div>
+
+	<script type="text/javascript">
+		function log(msg) {
+			console.log(msg);
+		}
+		
+		window.onload = function() {
+			testById();
+			testSimpleArray();
+			testSimpleObjectArray();
+			testAdvancedObjectArray();
+			testMap();
+			
+			ulList();
+			olList();
+		};
+		
+		//  简写  document.getElementById()
+		function testById() {
+			log("init util.js success");
+			
+			// byId
+			var name = dwr.util.byId("name").value;
+			log(name);
+			
+			// $() ----为了避免与jQuery冲突，不建议使用
+			var name = $("name").value;
+			log(name);
+			
+		}
+		
+		// 用普通字符串数组填充 
+		function testSimpleArray() {
+			var id = "simpleArray";
+			dwr.util.addOptions(id, ["Please select ..."]);
+			
+			var banks = ['Africa','America','Asia','Australasia', 'Europe'];
+			dwr.util.addOptions(id, banks);
+			dwr.util.setValue(id, "中国银行");
+			
+		}
+		
+		// 使用bean的某个属性来填充option
+		function testSimpleObjectArray() {
+			var id = "simpleObjectArray";
+			var beans = [
+			             { name:'Africa', population:'800m' },
+			             { name:'America', population:'900m' },
+			             { name:'Asia', population:'3000m' },
+			             { name:'Australasia', population:'31m' },
+			             { name:'Europe', population:'700m' }
+			           ];
+			dwr.util.addOptions(id, beans, "name");
+			// or 
+			// dwr.util.addOptions(id, beans, "population");
+			
+		}
+		
+		
+		// 分别指定option的value和text
+		function testAdvancedObjectArray() {
+			var id = "advancedObjectArray";
+			var beans = [
+			             { name:'Africa', id:'AF' },
+			             { name:'America', id:'AM' },
+			             { name:'Asia', id:'AS' },
+			             { name:'Australasia', id:'AU' },
+			             { name:'Europe', id:'EU' }
+			           ];
+			var value = "id";
+			var text = "name";
+			dwr.util.addOptions(id, beans, value, text);
+			
+		}
+		
+		// filling the values from the map keys and the text from the map values
+		function testMap() {
+			var id = "map";
+			var map = {
+						  AF:'Africa',
+						  AM:'America',
+						  AS:'Asia',
+						  AU:'Australasia',
+						  EU:'Europe'
+						};
+			dwr.util.addOptions(id, map);
+		}
+		
+		
+		
+		function testRemoveOptions(id) {
+			// 必须用input 类型的button 
+			dwr.util.removeAllOptions(id);
+		}
+		
+		
+		// ul 列表
+		function ulList() {
+			var id = "ul_list";
+			
+			var list = [ 'Africa', 'America', 'Asia', 'Australasia', 'Europe' ];
+			// escapeHtml: false 按默认的标签功能进行解析
+			dwr.util.addOptions(id, list, formatter, { escapeHtml: false });
+		}
+		
+		// ol 列表
+		function olList() {
+			var id = "ol_list";
+			
+			var list = [ 'Africa', 'America', 'Asia', 'Australasia', 'Europe' ];
+			// escapeHtml: true 将html标签按字符串输出，不进行解析
+			dwr.util.addOptions(id, list, formatter, { escapeHtml: true });
+		}
+		
+		
+		function formatter(data) { 
+			return "<em>" + data + "</em>"; 
+		}
+		
+	</script>
+</body>
+</html>

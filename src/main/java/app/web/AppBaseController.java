@@ -31,5 +31,12 @@ public abstract class AppBaseController extends AppBase {
 	}
 	
 	
+	public String htmlView(String base, String viewName) {
+		return "html/"+base+"/"+viewName+".html";
+	}
+	public String jsplView(String base, String viewName) {
+		return "jsp/"+base+"/"+viewName+".jsp";
+	}
+	
 	
 }

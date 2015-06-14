@@ -2,11 +2,11 @@
     pageEncoding="ISO-8859-1"
     import="app.entity.*,app.repository.*"%>
     
-<%@ include file="/common/taglib.jsp" %>
+<%@ include file="/common/jsp/taglib.jsp" %>
 
 <html>
     <head>
-        <%@ include file="/common/header.jsp" %>
+        <%@ include file="/common/jsp/header.jsp" %>
 
         <title>Applying JQuery DataTables plugin in the Java Server application</title>
 

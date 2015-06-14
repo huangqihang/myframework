@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+siy
+	<script type="text/javascript" src="/dwr/engine.js"></script>
+	<script type="text/javascript" src="/dwr/interface/Remote.js"></script>
+	<script type="text/javascript">
+		// sample 1
+		Remote.getData(1, {
+			callback : function(str) {
+				console.log(str);
+			}
+		});
+		
+		// sample 2
+		Remote.getData(2, {
+			  callback:function(str) { console.log(str); },
+			  timeout:5000,
+			  errorHandler:function(message) { console.log("Oops: " + message); }
+		});
+		
+		// sample 3
+		function handleGetData(str) {
+			  console.log(str);
+		}
+		Remote.getData(3, handleGetData);
+		
+		
+		// sample 4
+		Remote.getData(4, function(str) { console.log(str); });
+		
+	</script>
+	
+	
+	<script type="text/javascript">
+		// Creating JavaScript objects to match Java objects - 客户端发送Json对象给服务端，服务端自动转为对应JavaBean
+		var myJSPerson = {
+		    "name": "Fred Bloggs",
+		    "age": 42,
+		    "birth": new Date(),
+		    "address": [
+		        {
+		            "province": "aa",
+		            "city": "aa0"
+		        },
+		        {
+		            "province": "bb",
+		            "city": "bb0"
+		        }
+		    ]
+		};
+		Remote.doSomethingWithPerson(myJSPerson);
+	</script>
+	
+</body>
+</html>

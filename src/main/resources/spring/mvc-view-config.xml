@@ -12,7 +12,8 @@
     - and uses the requested media type (determined by the path extension) to pick a matching view. 
     - When the media type is 'text/html', it will delegate to the InternalResourceViewResolver's JstlView, 
     - otherwise to the BeanNameViewResolver.
-    -->
+    
+	- Registering BeanNameViewResolver and InternalViewResolver
 	<mvc:view-resolvers>
 		<mvc:content-negotiation use-not-acceptable="true">
 	    	<mvc:default-views>	    		
@@ -22,9 +23,46 @@
 	    	</mvc:default-views>
 	  	</mvc:content-negotiation>
 	
-	  	<!-- Registering BeanNameViewResolver and InternalViewResolver -->
 	  	<mvc:bean-name />
 	  	<mvc:jsp prefix="/WEB-INF/views/jsp/" suffix=""/>
 	</mvc:view-resolvers>
+-->
 
+	<bean class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
+	    <property name="mediaTypes">
+	         <map>
+               <entry key="json" value="application/json" />
+                <entry key="html" value="text/html"/>
+            </map>
+	    </property>
+	    <property name="viewResolvers">
+	        <list>
+	            <bean class="org.springframework.web.servlet.view.BeanNameViewResolver"/>
+	            
+	            <bean  class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+			        <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
+			        <property name="prefix" value="/WEB-INF/views/" />
+			        <!-- 为了既能支持jsp，又能支持html，这里不设置suffix -->
+			        <property name="suffix" value=""/>
+			    </bean>
+	        </list>
+	    </property>
+	    <property name="defaultViews">
+	        <list>
+	        	<!-- JSON View -->
+	            <bean class="org.springframework.web.servlet.view.json.MappingJackson2JsonView" />
+	        </list>
+	    </property>
+	</bean>
+	
+	<!-- 基于URL拼接的方式定位资源:jsp/html =========> UrlBasedViewResolver
+		redirect: prefix	
+			redirect:/myapp/some/resource  ===> redirect relative to the current Servlet context
+			redirect:http://myhost.com/some/arbitrary/path ===>redirect to an absolute URL
+		
+		forward: prefix
+			RequestDispatcher.forward()
+	 -->
+	
+    
 </beans>
